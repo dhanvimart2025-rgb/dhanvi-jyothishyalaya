@@ -49,4 +49,4 @@ $('askBtn').onclick=async()=>{let out=$('qResult'),q=$('question').value.trim();
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 $('pDate').value=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
 if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
-</script></body></html>
+</script><script src="./upgrade.js"></script></body></html>

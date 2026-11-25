@@ -1,43 +1,56 @@
-DHANVI JYOTHISHALAYA - INITIAL MOBILE WEB APP
+DHANVI JYOTHISHYALAYA — COMPLETE EDITION (TELUGU + ENGLISH)
 
-WHAT IS INCLUDED
-- Telugu / English interface
-- Panchangam form: date, place, latitude, longitude
-- Approximate tithi, paksha, nakshatra, Moon sign using Astronomy Engine + simplified Lahiri ayanamsa
-- Sunrise, sunset, moonrise and moonset via Astronomy Engine rise/set calculations
-- Birth details form and an initial Rasi chart prototype with planetary longitudes
-- Gemini AI question box through a Netlify Function
-- PWA manifest, icon, service worker for installable mobile shortcut
-- Netlify configuration
+Selected configuration
+- Complete Panchangam and birth-chart sections
+- Lahiri ayanamsa setting (the current implementation is an approximation)
+- Telugu / English language toggle
+- Netlify hosting and Gemini question-answer function
 
-IMPORTANT ACCURACY NOTICE
-This is an INITIAL WORKING PROTOTYPE, not a fully validated professional Panchangam or horoscope engine.
-- Tithi/nakshatra and planetary positions are computed from Astronomy Engine plus a simplified Lahiri ayanamsa approximation.
-- Traditional Telugu lunar month, tithi start/end times, yoga, karana, panchanga rules, Rahu/Ketu, Navamsa, Vimshottari dasha/bhukti, retrograde flags and compatibility are NOT fully implemented.
-- Ascendant and house layout are prototype calculations. Validate all chart outputs against a trusted Vedic ephemeris/panchanga before relying on them for rituals or decisions.
-- Astronomy Engine is loaded from jsDelivr CDN, so internet is required for calculations. Library reference: https://github.com/cosinekitty/astronomy
+WHAT THIS BUILD ADDS
+PANCHANGAM
+- Date and location inputs with coordinates
+- Weekday, paksha, tithi, nakshatra, yoga, karana, Moon sign
+- Estimated Telugu lunar month and 60-year samvatsara indication
+- Approximate tithi, nakshatra and yoga end-time search
+- Sunrise, sunset, moonrise, moonset
+- Rahu Kalam, Yamagandam and Gulika Kalam based on sunrise-to-sunset division
 
-DEPLOY TO NETLIFY
+BIRTH CHART
+- Name, date, time, place, latitude and longitude
+- Ascendant, Moon sign, birth nakshatra and pada
+- Nine grahas including approximate Rahu and Ketu (mean lunar node)
+- South Indian Rasi chart and planetary sidereal-longitude table
+- Navamsa (D9) placements
+- Indicative Vimshottari Mahadasha timeline
+
+AI QUESTION SERVICE
+- Existing Netlify Function retained at /.netlify/functions/ask
+- Uses GEMINI_API_KEY from Netlify environment variables
+- Key must never be placed in index.html or committed to GitHub
+
+IMPORTANT ACCURACY LIMITATIONS
+This is an enhanced prototype, NOT a validated professional Jyotish/Panchanga engine.
+- Astronomy Engine provides astronomical positions; Lahiri ayanamsa is currently approximated with a simple formula, not a complete Swiss Ephemeris implementation.
+- Telugu lunar month and samvatsara labels are indicative estimates; regional amanta/purnimanta conventions and Ugadi boundaries can differ.
+- Tithi/nakshatra/yoga boundary times are numerical estimates. Karana end-time, exact traditional observance rules, Amrita Kalam, Varjyam, Durmuhurta, Abhijit Muhurta, eclipse rules and festival nirnaya are not fully implemented.
+- Rahu/Ketu are mean-node estimates. True node, planetary speed/retrograde, shadbala, bhava calculations, divisional charts beyond the basic D9 display, antardasha/pratyantardasha and validated yoga/dosha analysis are not included.
+- Birth time must be entered in local Indian Standard Time (IST); coordinates must match the birthplace. Historical time-zone/DST corrections are not implemented.
+- Compare output with a trusted Drik Panchanga or professional Vedic astrology software before using for rituals, marriage, muhurta or any important decision. Astrology is a traditional belief system, not a scientifically established predictive method.
+
+DEPLOYMENT
 1. Extract this ZIP.
-2. In Netlify, choose Add new site > Deploy manually and upload the extracted folder contents (index.html must be at the publish root). Or push the extracted files to GitHub and connect the repository.
-3. Open Site configuration / Environment variables and add:
-   Key: GEMINI_API_KEY
-   Value: your Google AI Studio Gemini API key
-4. Redeploy after adding the environment variable. Never paste the API key into index.html or share it publicly.
-5. Ensure Site access / Visitor access is Public if you want other people to open it without authentication.
-6. Open the published HTTPS URL on a phone, then browser menu > Install app / Add to Home Screen.
-
-GEMINI API
-- The AI question feature uses model gemini-3.8-flash via Netlify Function.
-- API usage is subject to Google's current model availability, free-tier limits and pricing.
-- The API key remains on the Netlify server environment; it is not exposed in browser code.
-
-PLACE COORDINATES
-- Hyderabad default: latitude 17.385, longitude 78.4867.
-- You can use the location button or enter coordinates manually.
+2. Push all files and folders to your GitHub repository, preserving paths.
+3. Connect the repository to Netlify. Build command can remain blank; publish directory is ".". netlify.toml configures Functions.
+4. In Netlify > Project configuration > Environment variables add:
+   Name: GEMINI_API_KEY
+   Value: your Google AI Studio API key
+   Ensure the variable is available to Functions, then redeploy.
+5. Do not expose the API key in browser code or public screenshots.
+6. Open the deployed HTTPS site on a phone and choose Install app / Add to Home Screen.
 
 FILES
 - index.html
+- upgrade.js
 - manifest.json
 - sw.js
 - icon.svg
