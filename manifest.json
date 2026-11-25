@@ -1,0 +1,3 @@
+{
+"name":"Dhanvi Jyothishyalaya","short_name":"Dhanvi Jyothish","description":"Telugu and English Panchangam, Vedic birth chart and astrology questions","start_url":"./","display":"standalone","background_color":"#f6f3fb","theme_color":"#21133f","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
